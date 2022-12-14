@@ -5434,8 +5434,9 @@ menu() {
 	echoContent green "作者:星途领航"
 	echoContent green "当前版本:v2.6.13"
 	echoContent green "微信：Mqn1217"
-	echoContent green "描述:八合一共存脚本\c"
+	echoContent green "TikTok各项业务都可找我，都可以办理"
 	showInstallStatus
+         echoContent red "\n=============================================================="
 
 	if [[ -n "${coreInstallType}" ]]; then
 		echoContent yellow "1.重新安装"
