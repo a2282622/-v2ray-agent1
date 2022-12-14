@@ -722,7 +722,7 @@ installTools() {
 		nginxVersion=$(nginx -v 2>&1)
 		nginxVersion=$(echo "${nginxVersion}" | awk -F "[n][g][i][n][x][/]" '{print $2}' | awk -F "[.]" '{print $2}')
 		if [[ ${nginxVersion} -lt 14 ]]; then
-			read -r -p "读取到当前的Nginx版本不支持gRPC，会导致安装失败，是否卸载Nginx后重新安装 ？[y/n]:" unInstallNginxStatus
+			read -r -p "读取到当前的Nginx版本不支持gRPC，会导致安装失败，是否卸载Nginx后重新安装 ？微信:Mqn1217[y/n]:" unInstallNginxStatus
 			if [[ "${unInstallNginxStatus}" == "y" ]]; then
 				${removeType} nginx >/dev/null 2>&1
 				echoContent yellow " ---> nginx卸载完成"
@@ -856,21 +856,21 @@ installWarp() {
 # 初始化Nginx申请证书配置
 initTLSNginxConfig() {
 	handleNginx stop
-	echoContent skyBlue "\n进度  $1/${totalProgress} : 初始化Nginx申请证书配置"
+	echoContent skyBlue "\n进度  $1/${totalProgress} : 初始化Nginx申请证书配置 微信:Mqn1217"
 	if [[ -n "${currentHost}" ]]; then
 		echo
-		read -r -p "读取到上次安装记录，是否使用上次安装时的域名 ？[y/n]:" historyDomainStatus
+		read -r -p "读取到上次安装记录，是否使用上次安装时的域名 ？ 微信:Mqn1217[y/n]:" historyDomainStatus
 		if [[ "${historyDomainStatus}" == "y" ]]; then
 			domain=${currentHost}
 			echoContent yellow "\n ---> 域名: ${domain}"
 		else
 			echo
-			echoContent yellow "请输入要配置的域名 例: www.v2ray-agent.com --->"
+			echoContent yellow "微信:Mqn1217 请输入要配置的域名 例: www.v2ray-agent.com --->"
 			read -r -p "域名:" domain
 		fi
 	else
 		echo
-		echoContent yellow "请输入要配置的域名 例: www.v2ray-agent.com --->"
+		echoContent yellow "微信:Mqn1217 请输入要配置的域名 例: www.v2ray-agent.com --->"
 		read -r -p "域名:" domain
 	fi
 
@@ -1088,7 +1088,7 @@ checkIP() {
 
 	handleNginx stop
 	if [[ -z ${localIP} ]] || ! echo "${localIP}" | sed '1{s/[^(]*(//;s/).*//;q}' | grep -q '\.' && ! echo "${localIP}" | sed '1{s/[^(]*(//;s/).*//;q}' | grep -q ':'; then
-		echoContent red "\n ---> 未检测到当前域名的ip"
+		echoContent red "\n ---> 未检测到当前域名的ip 微信:Mqn1217"
 		echoContent skyBlue " ---> 请依次进行下列检查"
 		echoContent yellow " --->  1.检查域名是否书写正确"
 		echoContent yellow " --->  2.检查域名dns解析是否正确"
@@ -1165,6 +1165,7 @@ switchSSLType() {
 		echoContent yellow "1.letsencrypt[默认]"
 		echoContent yellow "2.zerossl"
 		echoContent yellow "3.buypass[不支持DNS申请]"
+                   echoContent yellow "办理各项TikTok业务联系微信：Mqn1217"
 		echoContent red "=============================================================="
 		read -r -p "请选择[回车]使用默认:" selectSSLType
 		case ${selectSSLType} in
@@ -1268,7 +1269,7 @@ customPortFunction() {
 
 	if [[ "${historyCustomPortStatus}" == "n" ]] && [[ -z "${customPort}" && -z "${currentPort}" ]]; then
 		echo
-		echoContent yellow "请输入端口[默认: 443]，如自定义端口，只允许使用DNS申请证书[回车使用默认]"
+		echoContent yellow "请输入端口[默认: 443]，如自定义端口，只允许使用DNS申请证书[回车使用默认] 微信：Mqn1217"
 		read -r -p "端口:" customPort
 		if [[ -n "${customPort}" ]]; then
 			if ((customPort >= 1 && customPort <= 65535)); then
@@ -1388,7 +1389,7 @@ randomPathFunction() {
 
 	if [[ -n "${currentPath}" ]]; then
 		echo
-		read -r -p "读取到上次安装记录，是否使用上次安装时的path路径 ？[y/n]:" historyPathStatus
+		read -r -p "读取到上次安装记录，是否使用上次安装时的path路径 ？[y/n]: 微信：Mqn1217" historyPathStatus
 		echo
 	fi
 
@@ -1416,7 +1417,7 @@ nginxBlog() {
 	echoContent skyBlue "\n进度 $1/${totalProgress} : 添加伪装站点"
 	if [[ -d "/usr/share/nginx/html" && -f "/usr/share/nginx/html/check" ]]; then
 		echo
-		read -r -p "检测到安装伪装站点，是否需要重新安装[y/n]:" nginxBlogInstallStatus
+		read -r -p "检测到安装伪装站点，是否需要重新安装[y/n]: 微信：Mqn1217" nginxBlogInstallStatus
 		if [[ "${nginxBlogInstallStatus}" == "y" ]]; then
 			rm -rf /usr/share/nginx/html
 			randomNum=$((RANDOM % 6 + 1))
