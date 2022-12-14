@@ -4101,7 +4101,7 @@ EOF
 # 脚本快捷方式
 aliasInstall() {
 
-	if [[ -f "$HOME/install.sh" ]] && [[ -d "/etc/v2ray-agent" ]] && grep <"$HOME/install.sh" -q "作者:mack-a"; then
+	if [[ -f "$HOME/install.sh" ]] && [[ -d "/etc/v2ray-agent" ]] && grep <"$HOME/install.sh" -q "作者:Mqn 微信：Mqn1217"; then
 		mv "$HOME/install.sh" /etc/v2ray-agent/install.sh
 		local vasmaType=
 		if [[ -d "/usr/bin/" ]]; then
@@ -5431,15 +5431,12 @@ manageHysteria() {
 menu() {
 	cd "$HOME" || exit
 	echoContent red "\n=============================================================="
-	echoContent green "作者:mack-a"
+	echoContent green "作者:星途领航"
 	echoContent green "当前版本:v2.6.13"
-	echoContent green "Github:https://github.com/panhuanghe/v2ray-agent"
+	echoContent green "微信：Mqn1217"
 	echoContent green "描述:八合一共存脚本\c"
 	showInstallStatus
-	echoContent red "\n=============================================================="
-	echoContent red "                        推广区                      "
-	echoContent green "AFF捐赠：免费脚本无需捐助"
-	echoContent red "=============================================================="
+
 	if [[ -n "${coreInstallType}" ]]; then
 		echoContent yellow "1.重新安装"
 	else
@@ -5454,7 +5451,7 @@ menu() {
 	fi
 
 	echoContent yellow "4.Hysteria管理"
-	echoContent skyBlue "-------------------------工具管理-----------------------------"
+	echoContent skyBlue "-------------------------工具管理 微信：Mqn1217-----------------------------"
 	echoContent yellow "5.账号管理"
 	echoContent yellow "6.更换伪装站"
 	echoContent yellow "7.更新证书"
@@ -5466,11 +5463,11 @@ menu() {
 	echoContent yellow "13.BT下载管理"
 	echoContent yellow "14.切换alpn"
 	echoContent yellow "15.域名黑名单"
-	echoContent skyBlue "-------------------------版本管理-----------------------------"
+	echoContent skyBlue "-------------------------版本管理 微信：Mqn1217-----------------------------"
 	echoContent yellow "16.core管理"
 	echoContent yellow "17.更新脚本"
 	echoContent yellow "18.安装BBR、DD脚本"
-	echoContent skyBlue "-------------------------脚本管理-----------------------------"
+	echoContent skyBlue "-------------------------脚本管理 微信：Mqn1217-----------------------------"
 	echoContent yellow "19.查看日志"
 	echoContent yellow "20.卸载脚本"
 	echoContent red "=============================================================="
