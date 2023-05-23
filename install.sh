@@ -722,7 +722,7 @@ installTools() {
 		nginxVersion=$(nginx -v 2>&1)
 		nginxVersion=$(echo "${nginxVersion}" | awk -F "[n][g][i][n][x][/]" '{print $2}' | awk -F "[.]" '{print $2}')
 		if [[ ${nginxVersion} -lt 14 ]]; then
-			read -r -p "读取到当前的Nginx版本不支持gRPC，会导致安装失败，是否卸载Nginx后重新安装 ？微信:Mqn1217[y/n]:" unInstallNginxStatus
+			read -r -p "读取到当前的Nginx版本不支持gRPC，会导致安装失败，是否卸载Nginx后重新安装 ？微信:naithink[y/n]:" unInstallNginxStatus
 			if [[ "${unInstallNginxStatus}" == "y" ]]; then
 				${removeType} nginx >/dev/null 2>&1
 				echoContent yellow " ---> nginx卸载完成"
@@ -856,21 +856,21 @@ installWarp() {
 # 初始化Nginx申请证书配置
 initTLSNginxConfig() {
 	handleNginx stop
-	echoContent skyBlue "\n进度  $1/${totalProgress} : 初始化Nginx申请证书配置 微信:Mqn1217"
+	echoContent skyBlue "\n进度  $1/${totalProgress} : 初始化Nginx申请证书配置 微信:naithink"
 	if [[ -n "${currentHost}" ]]; then
 		echo
-		read -r -p "读取到上次安装记录，是否使用上次安装时的域名 ？ 微信:Mqn1217[y/n]:" historyDomainStatus
+		read -r -p "读取到上次安装记录，是否使用上次安装时的域名 ？ 微信:naithink[y/n]:" historyDomainStatus
 		if [[ "${historyDomainStatus}" == "y" ]]; then
 			domain=${currentHost}
 			echoContent yellow "\n ---> 域名: ${domain}"
 		else
 			echo
-			echoContent yellow "微信:Mqn1217 请输入要配置的域名 例: www.v2ray-agent.com --->"
+			echoContent yellow "微信:naithink 请输入要配置的域名 例: www.v2ray-agent.com --->"
 			read -r -p "域名:" domain
 		fi
 	else
 		echo
-		echoContent yellow "微信:Mqn1217 请输入要配置的域名 例: www.v2ray-agent.com --->"
+		echoContent yellow "微信:naithink 请输入要配置的域名 例: www.v2ray-agent.com --->"
 		read -r -p "域名:" domain
 	fi
 
@@ -1088,7 +1088,7 @@ checkIP() {
 
 	handleNginx stop
 	if [[ -z ${localIP} ]] || ! echo "${localIP}" | sed '1{s/[^(]*(//;s/).*//;q}' | grep -q '\.' && ! echo "${localIP}" | sed '1{s/[^(]*(//;s/).*//;q}' | grep -q ':'; then
-		echoContent red "\n ---> 未检测到当前域名的ip 微信:Mqn1217"
+		echoContent red "\n ---> 未检测到当前域名的ip 微信:naithink"
 		echoContent skyBlue " ---> 请依次进行下列检查"
 		echoContent yellow " --->  1.检查域名是否书写正确"
 		echoContent yellow " --->  2.检查域名dns解析是否正确"
@@ -1165,7 +1165,7 @@ switchSSLType() {
 		echoContent yellow "1.letsencrypt[默认]"
 		echoContent yellow "2.zerossl"
 		echoContent yellow "3.buypass[不支持DNS申请]"
-                   echoContent yellow "办理各项TikTok业务联系微信：Mqn1217"
+                   echoContent yellow "办理各项TikTok业务联系微信：naithink"
 		echoContent red "=============================================================="
 		read -r -p "请选择[回车]使用默认:" selectSSLType
 		case ${selectSSLType} in
@@ -1269,7 +1269,7 @@ customPortFunction() {
 
 	if [[ "${historyCustomPortStatus}" == "n" ]] && [[ -z "${customPort}" && -z "${currentPort}" ]]; then
 		echo
-		echoContent yellow "请输入端口[默认: 443]，如自定义端口，只允许使用DNS申请证书[回车使用默认] 微信：Mqn1217"
+		echoContent yellow "请输入端口[默认: 443]，如自定义端口，只允许使用DNS申请证书[回车使用默认] 微信：naithink"
 		read -r -p "端口:" customPort
 		if [[ -n "${customPort}" ]]; then
 			if ((customPort >= 1 && customPort <= 65535)); then
@@ -1389,7 +1389,7 @@ randomPathFunction() {
 
 	if [[ -n "${currentPath}" ]]; then
 		echo
-		read -r -p "读取到上次安装记录，是否使用上次安装时的path路径 ？[y/n]: 微信：Mqn1217" historyPathStatus
+		read -r -p "读取到上次安装记录，是否使用上次安装时的path路径 ？[y/n]: 微信：naithink" historyPathStatus
 		echo
 	fi
 
@@ -1417,7 +1417,7 @@ nginxBlog() {
 	echoContent skyBlue "\n进度 $1/${totalProgress} : 添加伪装站点"
 	if [[ -d "/usr/share/nginx/html" && -f "/usr/share/nginx/html/check" ]]; then
 		echo
-		read -r -p "检测到安装伪装站点，是否需要重新安装[y/n]: 微信：Mqn1217" nginxBlogInstallStatus
+		read -r -p "检测到安装伪装站点，是否需要重新安装[y/n]: 微信：naithink" nginxBlogInstallStatus
 		if [[ "${nginxBlogInstallStatus}" == "y" ]]; then
 			rm -rf /usr/share/nginx/html
 			randomNum=$((RANDOM % 6 + 1))
@@ -3976,9 +3976,9 @@ updateV2RayAgent() {
 	echoContent skyBlue "\n进度  $1/${totalProgress} : 更新v2ray-agent脚本"
 	rm -rf /etc/v2ray-agent/install.sh
 	if wget --help | grep -q show-progress; then
-		wget -c -q --show-progress -P /etc/v2ray-agent/ -N --no-check-certificate "https://raw.githubusercontent.com/panhuanghe/v2ray-agent/master/install.sh"
+		wget -c -q --show-progress -P /etc/v2ray-agent/ -N --no-check-certificate "wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/a2282622/-v2ray-agent1/main/install.sh"
 	else
-		wget -c -q -P /etc/v2ray-agent/ -N --no-check-certificate "https://raw.githubusercontent.com/panhuanghe/v2ray-agent/master/install.sh"
+		wget -c -q -P /etc/v2ray-agent/ -N --no-check-certificate "wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/a2282622/-v2ray-agent1/main/install.sh"
 	fi
 
 	sudo chmod 700 /etc/v2ray-agent/install.sh
@@ -3989,7 +3989,7 @@ updateV2RayAgent() {
 	echoContent yellow " ---> 请手动执行[vasma]打开脚本"
 	echoContent green " ---> 当前版本:${version}\n"
 	echoContent yellow "如更新不成功，请手动执行下面命令\n"
-	echoContent skyBlue "wget -P /root -N --no-check-certificate https://raw.githubusercontent.com/panhuanghe/v2ray-agent/master/install.sh && chmod 700 /root/install.sh && /root/install.sh"
+	echoContent skyBlue "wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/a2282622/-v2ray-agent1/main/install.sh" && chmod 700 /root/install.sh && /root/install.sh"
 	echo
 	exit 0
 }
@@ -4102,7 +4102,7 @@ EOF
 # 脚本快捷方式
 aliasInstall() {
 
-	if [[ -f "$HOME/install.sh" ]] && [[ -d "/etc/v2ray-agent" ]] && grep <"$HOME/install.sh" -q "作者:Mqn 微信：Mqn1217"; then
+	if [[ -f "$HOME/install.sh" ]] && [[ -d "/etc/v2ray-agent" ]] && grep <"$HOME/install.sh" -q "作者:Vale 微信：naithink"; then
 		mv "$HOME/install.sh" /etc/v2ray-agent/install.sh
 		local vasmaType=
 		if [[ -d "/usr/bin/" ]]; then
@@ -4156,8 +4156,6 @@ ipv6Routing() {
 	if [[ "${ipv6Status}" == "1" ]]; then
 		echoContent red "=============================================================="
 		echoContent yellow "# 注意事项\n"
-		echoContent yellow "1.规则仅支持预定义域名列表[https://github.com/v2fly/domain-list-community]"
-		echoContent yellow "2.详细文档[https://www.v2fly.org/config/routing.html]"
 		echoContent yellow "3.如内核启动失败请检查域名后重新添加域名"
 		echoContent yellow "4.不允许有特殊字符，注意逗号的格式"
 		echoContent yellow "5.每次添加都是重新添加，不会保留上次域名"
@@ -4538,7 +4536,7 @@ dokodemoDoorUnblockStreamingMedia() {
 	echoContent skyBlue "\n功能 1/${totalProgress} : 任意门落地机解锁流媒体"
 	echoContent red "\n=============================================================="
 	echoContent yellow "# 注意事项"
-	echoContent yellow "任意门解锁详解，请查看此文章[https://github.com/panhuanghe/v2ray-agent/blob/master/documents/netflix/dokodemo-unblock_netflix.md]\n"
+	echoContent yellow "添加vale微信：naithink"
 
 	echoContent yellow "1.添加出站"
 	echoContent yellow "2.添加入站"
@@ -5001,7 +4999,7 @@ EOF
 
 		reloadCore
 
-		echoContent yellow "\n ---> 如还无法观看可以尝试以下两种方案"
+		echoContent yellow "\n ---> 如还无法观看可以尝试以下两种方案（或者添加微信：naithink 解决问题）"
 		echoContent yellow " 1.重启vps"
 		echoContent yellow " 2.卸载dns解锁后，修改本地的[/etc/resolv.conf]DNS设置并重启vps\n"
 	else
@@ -5035,7 +5033,7 @@ customV2RayInstall() {
 	echoContent yellow "0.VLESS+TLS/XTLS+TCP"
 	echoContent yellow "1.VLESS+TLS+WS[CDN]"
 	echoContent yellow "2.Trojan+TLS+gRPC[CDN]"
-	echoContent yellow "3.VMess+TLS+WS[CDN]"
+	echoContent yellow "3.VMess+TLS+WS[CDN]（推荐版本！！！）"
 	echoContent yellow "4.Trojan"
 	echoContent yellow "5.VLESS+TLS+gRPC[CDN]"
 	read -r -p "请选择[多选]，[例如:123]:" selectCustomInstallType
@@ -5084,7 +5082,7 @@ customXrayInstall() {
 	echoContent yellow "0.VLESS+TLS/XTLS+TCP"
 	echoContent yellow "1.VLESS+TLS+WS[CDN]"
 	echoContent yellow "2.Trojan+TLS+gRPC[CDN]"
-	echoContent yellow "3.VMess+TLS+WS[CDN]"
+	echoContent yellow "3.VMess+TLS+WS[CDN]（推荐版本！！！）"
 	echoContent yellow "4.Trojan"
 	echoContent yellow "5.VLESS+TLS+gRPC[CDN]"
 	read -r -p "请选择[多选]，[例如:123]:" selectCustomInstallType
@@ -5432,10 +5430,10 @@ manageHysteria() {
 menu() {
 	cd "$HOME" || exit
 	echoContent red "\n=============================================================="
-	echoContent green "作者:星途领航"
+	echoContent green "作者:vale"
 	echoContent green "当前版本:v2.6.13"
-	echoContent green "微信：Mqn1217"
-	echoContent green "TikTok各项业务都可找我，都可以办理"
+	echoContent green "微信：naithink"
+	echoContent green "专业品牌跨境运营，品牌出海、暴力营销、做最好的服务！"
 	echoContent red "\n=============================================================="
 	showInstallStatus
          
@@ -5454,7 +5452,7 @@ menu() {
 	fi
 
 	echoContent yellow "4.Hysteria管理"
-	echoContent skyBlue "-------------------------工具管理 微信：Mqn1217-----------------------------"
+	echoContent skyBlue "-------------------------工具管理 微信：naithink-----------------------------"
 	echoContent yellow "5.账号管理"
 	echoContent yellow "6.更换伪装站"
 	echoContent yellow "7.更新证书"
@@ -5466,11 +5464,11 @@ menu() {
 	echoContent yellow "13.BT下载管理"
 	echoContent yellow "14.切换alpn"
 	echoContent yellow "15.域名黑名单"
-	echoContent skyBlue "-------------------------版本管理 微信：Mqn1217-----------------------------"
+	echoContent skyBlue "-------------------------版本管理 微信：naithink-----------------------------"
 	echoContent yellow "16.core管理"
 	echoContent yellow "17.更新脚本"
 	echoContent yellow "18.安装BBR、DD脚本"
-	echoContent skyBlue "-------------------------脚本管理 微信：Mqn1217-----------------------------"
+	echoContent skyBlue "-------------------------脚本管理 微信：naithink-----------------------------"
 	echoContent yellow "19.查看日志"
 	echoContent yellow "20.卸载脚本"
 	echoContent red "=============================================================="
