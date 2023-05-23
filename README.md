@@ -1,5 +1,4 @@
-由于各种原因导致市场上经常被F，所以星途自身创建了一个学习的版本，仅供学习~
+用于Vale的网络搭建的一键脚本，切勿商用，仅供学习，谢谢。
 ```
 wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/a2282622/-v2ray-agent1/main/install.sh" && chmod 700 /root/install.sh && /root/install.sh
 ```
-
